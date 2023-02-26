@@ -1,0 +1,57 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+
+		
+		<link rel="stylesheet" type="text/css" href="/css/viewstyle.css">
+		
+		
+		<title>CSV Reader</title>
+	</head>
+	<body>
+		<main>
+			<header>
+				<!-- Home button link -->
+				<div id="home-button">
+					<a href="/">Home</a>
+				</div>
+						<!-- Search input field -->
+		<div class="input-group">
+			<input type="text" id="searchItem" class="forminput" placeholder="Search Data">
+		</div>
+	</header>
+
+	<!-- Table container -->
+	<div id='table-container'>
+		<table id="table_id" class="display">
+			<thead>
+				<tr>
+					<!-- Loop through the first row of csvData to create table headers -->
+					<% for (const [key, value] of Object.entries(csvData[0])) { %>
+						<th class="row-heading" data-sortable="true"><%= key %></th>
+					<% } %>
+				</tr>
+			</thead>
+
+			<!-- Loop through each row of csvData to populate the table -->
+			<% for(let i=0;i<csvData.length;i++) { %>
+				<tbody>
+					<tr id="row-<%= i %>">
+						<!-- Loop through each column of the current row to create table cells -->
+						<% for(const [key, value] of Object.entries(csvData[i])) { %>
+							<td class="row-data"><%= value %></td>
+						<% } %>
+					</tr>
+				</tbody>
+			<% } %>
+		</table>
+	</div>
+</main>
+
+<!-- Import the index.js script -->
+<script src="/js/index.js"></script>
+</body>
+	</html>

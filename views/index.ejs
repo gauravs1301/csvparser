@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/homestyle.css" />
+    <title>Upload CSV File</title>
+  </head>
+  <body>
+    <!-- form action and method to upload csv file -->
+    <div class="main-container">
+      <form action="/upload-csv" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="formFileSm" class="form-label"
+            ><h1 style="font-weight: 700;">
+              Upload CSV file
+            </h1></label
+          >
+          <!-- Validation that accepts only the files that are of csv format in frontend-->
+          <input
+            class="form-control form-control-sm"
+            id="formFileSm"
+            type="file"
+            name="csvfile"
+            accept=".csv"
+            multiple
+          />
+        </div>
+        <div>
+          <!-- Buttons to reset and upload the csv file -->
+          <button type="reset" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-success">Upload</button>
+        </div>
+      </form>
+      
+      <div class="files-container">
+        <!-- It shows files that are getting uploaded on the frontend with Option to Open and Delete the File -->
+        <% for(let i=0;i<files.length;i++){ %>
+          <div class="file-box">
+            <div class="file-name" style="font-weight: 900; font-size: 1.1rem; padding:10px;"><%=files[i].substring(8,22) %></div>
+            <div class="btn-box" style="margin-top: 10px;">
+              <a style="background-color: rgb(50, 132, 50); color: white;font-weight: 600;" 
+              href="/open/?index=<%= i %>" >OPEN</a></abbr>
+              <a  style="background-color: rgb(214, 18, 18); color: white;font-weight: 600;" 
+              href="/delete/?index=<%= i %>">DELETE</a></div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
